@@ -13,6 +13,7 @@ import { MyBlogs } from './pages/MyBlogs';
 import { CreateBlog } from './pages/CreateBlog';
 import { EditBlog } from './pages/EditBlog';
 import { Settings } from './pages/Settings';
+import { UserProfile } from './pages/UserProfile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/" element={<HomeFeed />} />
               <Route path="/blog/:id" element={<BlogDetail />} />
               <Route path="/user/:username" element={<UserBlogs />} />
+              <Route path="/profile/:username" element={<UserProfile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/oauth2/redirect" element={<OAuthCallback />} />

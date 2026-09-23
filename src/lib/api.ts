@@ -95,18 +95,25 @@ export const authApi = {
     }),
 
   getCurrentUser: () =>
-    request<import('../types').UserResponseDTO>('/user', { method: 'GET' }),
+    request<import('../types').UserResponseDTO>('/user/my', { method: 'GET' }),
+
+  getUserByUsername: (username: string) =>
+    request<import('../types').UserResponseDTO>(`/user/username?username=${encodeURIComponent(username)}`, {
+      method: 'GET',
+    }),
 
   updateUsername: (username: string) =>
     request<void>('/user/username', {
       method: 'PATCH',
-      body: JSON.stringify(username),
+      headers: { 'Content-Type': 'text/plain' },
+      body: username,
     }),
 
   updateDescription: (description: string) =>
     request<void>('/user/description', {
       method: 'PATCH',
-      body: JSON.stringify(description),
+      headers: { 'Content-Type': 'text/plain' },
+      body: description,
     }),
 
   deleteUser: () =>
@@ -152,13 +159,15 @@ export const blogApi = {
   updateTitle: (id: string, title: string) =>
     request<void>(`/blog/title/${id}`, {
       method: 'PATCH',
-      body: JSON.stringify(title),
+      headers: { 'Content-Type': 'text/plain' },
+      body: title,
     }),
 
   updateContent: (id: string, content: string) =>
     request<void>(`/blog/content/${id}`, {
       method: 'PATCH',
-      body: JSON.stringify(content),
+      headers: { 'Content-Type': 'text/plain' },
+      body: content,
     }),
 
   updateImage: (id: string, image: File) => {

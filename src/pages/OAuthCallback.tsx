@@ -10,24 +10,28 @@ export function OAuthCallback() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // The backend redirects here with the JWT token.
-    // Check common locations: query param, fragment
-    const token =
-      searchParams.get('token') ||
-      searchParams.get('access_token') ||
-      new URLSearchParams(window.location.hash.slice(1)).get('token') ||
-      new URLSearchParams(window.location.hash.slice(1)).get('access_token');
+    const token = searchParams.get('token');
 
     if (token) {
       login(token)
         .then(() => navigate('/', { replace: true }))
         .catch(() => {
           setError('Failed to complete Google sign-in. Please try again.');
-          setTimeout(() => navigate('/login', { replace: true }), 2500);
+          setTimeout(() => {
+            navigate('/login', {
+              replace: true,
+              state: { oauthError: 'Google sign-in failed. Please try again.' },
+            });
+          }, 2500);
         });
     } else {
       setError('No authentication token received from Google sign-in.');
-      setTimeout(() => navigate('/login', { replace: true }), 2500);
+      setTimeout(() => {
+        navigate('/login', {
+          replace: true,
+          state: { oauthError: 'No authentication token received. Please try again.' },
+        });
+      }, 2500);
     }
   }, [searchParams, login, navigate]);
 

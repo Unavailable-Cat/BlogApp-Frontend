@@ -14,11 +14,12 @@ export function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: string })?.from || '/';
+  const oauthError = (location.state as { oauthError?: string })?.oauthError || null;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(oauthError);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

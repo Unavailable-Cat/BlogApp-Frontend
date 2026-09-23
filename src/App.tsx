@@ -27,7 +27,7 @@ function App() {
               <Route path="/user/:username" element={<UserBlogs />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/oauth/callback" element={<OAuthCallback />} />
+              <Route path="/oauth2/redirect" element={<OAuthCallback />} />
 
               {/* Protected routes */}
               <Route

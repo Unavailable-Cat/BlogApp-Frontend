@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-ink-50 text-ink-900 font-sans antialiased;
+  }
+  * {
+    @apply border-ink-200;
+  }
+}
+
+@layer utilities {
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.04) 25%,
+      rgba(0, 0, 0, 0.08) 50%,
+      rgba(0, 0, 0, 0.04) 75%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-ink-300 rounded-full;
+  }
+}
+
+/* Global focus-visible styling for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-ink-50;
+}
+
+/* Smooth transitions on interactive elements */
+button, a {
+  @apply transition-colors duration-200;
+}
+
+/* Article content typography */
+.article-content {
+  @apply font-serif text-ink-800 leading-relaxed;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.article-content p {
+  @apply mb-4;
+}
